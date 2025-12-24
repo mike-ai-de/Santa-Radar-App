@@ -44,7 +44,7 @@ export const RadarMap: React.FC<RadarMapProps> = ({ userLocation, santaStatus, z
         zoom={3} 
         // WICHTIG: Wir nutzen jetzt 'style' statt 'className' für die Größe
         // 100vh = 100% der Bildschirmhöhe (View Height)
-        style={{ height: '100vh', width: '100vw', background: '#051105' }}
+        style={{ height: '100dvh', width: '100vw', background: '#051105' }}
         zoomControl={false}
         attributionControl={false}
       >
