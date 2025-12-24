@@ -1,0 +1,7 @@
+{
+  "name": "Santa Radar Live",
+  "description": "A magical, real-time radar tracking Santa Claus with AI-powered elf chat.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
