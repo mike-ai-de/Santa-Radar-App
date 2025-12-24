@@ -78,7 +78,7 @@ function App() {
       {/* Floating HUD Controls */}
       <div className="absolute top-4 right-4 z-[500] flex flex-col gap-2">
          <button 
-           onClick={() => setIsSidebarOpen(true)}
+           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
            className="bg-gray-900/80 text-green-400 p-3 rounded-full border border-green-500/50 hover:bg-green-900/50 backdrop-blur-md shadow-[0_0_10px_rgba(0,255,0,0.3)] transition-all"
          >
            <Menu size={24} />
