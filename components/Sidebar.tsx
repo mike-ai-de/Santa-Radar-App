@@ -12,7 +12,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: '1', role: 'model', text: "Greetings! I'm Alabaster, monitoring Flight SANTA1. Ask me anything!" }
+    { id: '1', role: 'model', text: "Hej! Ich bin Olaf, ich bin der persönliche Fluglotse von SANTA1, der Weihnachtsmann. Frag mich alles was du willst!" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
