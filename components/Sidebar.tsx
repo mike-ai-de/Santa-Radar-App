@@ -47,20 +47,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
   };
 
   return (
-    <div className={`fixed inset-y-0 right-0 w-full sm:w-80 bg-gray-900/95 border-l border-green-800/50 backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+    // FIX 1: h-[100dvh] sorgt dafür, dass die Leiste sich der tatsächlichen Bildschirmhöhe anpasst (auch mit Tastatur)
+    <div className={`fixed top-0 right-0 h-[100dvh] w-full sm:w-80 bg-gray-900/95 border-l border-green-800/50 backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
       
-      {/* Header */}
-      <div className="p-4 border-b border-green-800/50 flex justify-between items-center bg-gray-900">
+      {/* Header (Fest) */}
+      <div className="flex-none p-4 border-b border-green-800/50 flex justify-between items-center bg-gray-900">
         <h2 className="text-xl font-bold text-green-400 font-mono flex items-center gap-2">
           <Plane className="transform -rotate-45" /> FLIGHT DATA
         </h2>
         <button onClick={onClose} className="text-green-600 hover:text-green-300 sm:hidden">Close</button>
       </div>
 
-      <div className="flex flex-col h-[calc(100%-64px)] overflow-y-auto">
+      {/* Main Content Area (Scrollbar hier für Telemetry, falls nötig) */}
+      <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
         
-        {/* Telemetry Panel */}
-        <div className="p-4 space-y-4 border-b border-green-800/30">
+        {/* Telemetry Panel (Scrollt weg, wenn Platz knapp wird? Oder bleibt fest? Hier: Scrollt mit) */}
+        <div className="flex-none p-4 space-y-4 border-b border-green-800/30 overflow-y-auto max-h-[40vh]">
           <div className="bg-black/40 p-3 rounded border border-green-900/50">
              <div className="text-xs text-green-600 uppercase mb-1">Callsign</div>
              <div className="text-2xl font-mono text-green-400 tracking-widest">SANTA1</div>
@@ -86,13 +88,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
           </div>
         </div>
 
-        {/* Chat Interface */}
-        <div className="flex-1 flex flex-col min-h-[300px] bg-gray-900/50">
-           <div className="p-3 bg-green-900/20 border-b border-green-800/30 flex items-center gap-2">
+        {/* Chat Interface (Füllt den Rest) */}
+        <div className="flex-1 flex flex-col min-h-0 bg-gray-900/50">
+           <div className="flex-none p-3 bg-green-900/20 border-b border-green-800/30 flex items-center gap-2">
               <MessageCircle size={16} className="text-green-400"/>
               <span className="text-sm font-bold text-green-400">ELF COMMS LINK</span>
            </div>
 
+           {/* Nachrichten Liste (Das einzige Element, das hier scrollen soll) */}
            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -103,7 +106,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
                   }`}>
                     {msg.isThinking ? (
                        <span className="flex items-center gap-2 animate-pulse text-green-500">
-                         <Sparkles size={14} /> Thinking...
+                         {/* FIX: Text auf Deutsch angepasst */}
+                         <Sparkles size={14} /> Übertrage...
                        </span>
                     ) : (
                       msg.text
@@ -113,7 +117,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
               ))}
            </div>
 
-           <div className="p-3 border-t border-green-800/30 bg-gray-900">
+           {/* Input Area (Bleibt immer unten sichtbar) */}
+           <div className="flex-none p-3 border-t border-green-800/30 bg-gray-900 pb-safe">
              <div className="flex gap-2">
                <input
                  type="text"
@@ -137,3 +142,4 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
     </div>
   );
 };
+
