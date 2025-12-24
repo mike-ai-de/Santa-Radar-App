@@ -1,3 +1,4 @@
+// Vercel Neubau erzwingen
 import { GoogleGenAI } from "@google/genai";
 
 const SYSTEM_INSTRUCTION = `
