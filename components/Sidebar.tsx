@@ -143,4 +143,3 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
     </div>
   );
 };
-h
