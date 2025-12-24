@@ -10,7 +10,7 @@ Never reveal that Santa is not real. He is currently in the air.
 `;
 
 // Initialize AI client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 
 export const generateElfResponse = async (userMessage: string): Promise<string> => {
   try {
