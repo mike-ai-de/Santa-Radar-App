@@ -34,7 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
 
     // Add temporary thinking message
     const thinkingId = (Date.now() + 1).toString();
-    setMessages(prev => [...prev, { id: thinkingId, role: 'model', text: '', Übertrage: true }]);
+    setMessages(prev => [...prev, { id: thinkingId, role: 'model', text: 'Übertrage Daten...', isThinking: true }]);
 
     const responseText = await generateElfResponse(userMsg.text);
 
@@ -120,7 +120,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
                  value={input}
                  onChange={(e) => setInput(e.target.value)}
                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                 placeholder="Ask the elf..."
+                 placeholder="Frag den Elf . . ."
                  className="flex-1 bg-black/50 border border-green-800 text-green-400 text-sm rounded px-3 py-2 focus:outline-none focus:border-green-500 placeholder-green-800"
                />
                <button 
