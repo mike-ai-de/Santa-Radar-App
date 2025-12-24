@@ -42,10 +42,9 @@ export const RadarMap: React.FC<RadarMapProps> = ({ userLocation, santaStatus, z
       <MapContainer 
         center={userLocation} 
         zoom={3} 
-        // HIER IST DIE ÄNDERUNG: Wir erzwingen die Größe per Tailwind-Klasse
-        className="w-full h-full absolute inset-0"
-        // Style nur noch für die Hintergrundfarbe nutzen (Höhe/Breite raus)
-        style={{ background: '#051105' }}
+        // WICHTIG: Wir nutzen jetzt 'style' statt 'className' für die Größe
+        // 100vh = 100% der Bildschirmhöhe (View Height)
+        style={{ height: '100vh', width: '100vw', background: '#051105' }}
         zoomControl={false}
         attributionControl={false}
       >
