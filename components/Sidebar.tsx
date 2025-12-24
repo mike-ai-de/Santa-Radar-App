@@ -34,7 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ status, isOpen, onClose }) => 
 
     // Add temporary thinking message
     const thinkingId = (Date.now() + 1).toString();
-    setMessages(prev => [...prev, { id: thinkingId, role: 'model', text: '', isThinking: true }]);
+    setMessages(prev => [...prev, { id: thinkingId, role: 'model', text: '', Übertrage: true }]);
 
     const responseText = await generateElfResponse(userMsg.text);
 
